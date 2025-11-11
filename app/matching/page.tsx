@@ -2,7 +2,10 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import Header from '../components/Header';
+import FloatingButtons from '../components/FloatingButtons';
+import Footer from '../components/Footer';
 
 export default function MatchingPage() {
   const router = useRouter();
@@ -14,42 +17,32 @@ export default function MatchingPage() {
       title: '밝고 활발한',
       description: '에너지 넘치는 밝은 성격. 외향적이고 사교적이며 긍정적인 여성',
       traits: ['활발함', '사교적', '밝은 성격', '긍정적'],
-      image: '👩‍🦰',
+      imagePath: '/images/types/cheerful.jpg',
+      gradient: 'from-orange-400 to-pink-500',
     },
     {
       id: 'gentle-quiet',
       title: '조용하고 차분한',
       description: '침착하고 신중한 성격. 조용하지만 따뜻한 마음을 가진 여성',
       traits: ['차분함', '신중함', '배려심', '조용함'],
-      image: '👩',
-    },
-    {
-      id: 'homely',
-      title: '가정적인',
-      description: '요리와 집안일을 즐기고 가족을 최우선으로 생각하는 여성',
-      traits: ['요리 잘함', '가정적', '헌신적', '가족 중심'],
-      image: '👩‍🍳',
+      imagePath: '/images/types/gentle.jpg',
+      gradient: 'from-blue-400 to-purple-500',
     },
     {
       id: 'educated',
       title: '지적이고 교양있는',
       description: '대졸 이상 학력. 교양있고 대화가 통하는 지적인 여성',
       traits: ['대졸', '지적', '교양있음', '대화 잘함'],
-      image: '👩‍🎓',
-    },
-    {
-      id: 'traditional',
-      title: '전통적 가치관',
-      description: '전통적인 가치관을 가지고 남편을 존중하고 섬기는 여성',
-      traits: ['전통적', '순종적', '존중', '헌신'],
-      image: '👰',
+      imagePath: '/images/types/educated.jpg',
+      gradient: 'from-indigo-400 to-blue-600',
     },
     {
       id: 'young-beautiful',
       title: '젊고 아름다운',
       description: '외모가 뛰어나고 젊은 매력적인 여성',
       traits: ['외모 우수', '젊음', '매력적', '스타일'],
-      image: '💃',
+      imagePath: '/images/types/beautiful.jpg',
+      gradient: 'from-fuchsia-400 to-pink-600',
     },
   ];
 
@@ -73,104 +66,118 @@ export default function MatchingPage() {
   return (
     <>
       <Header />
+      <FloatingButtons />
       <main className="min-h-screen bg-[#FAFAF8]">
-        {/* Hero Section */}
-        <section className="bg-[#1a1a1a] text-white py-24 px-8">
-          <div className="max-w-6xl mx-auto text-center">
-            <span className="text-[#D4AF37] text-sm tracking-[0.3em] font-light uppercase mb-4 block">
-              Find Your Match
-            </span>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              선호하는 여성 타입을
-              <br />
-              <span className="text-[#D4AF37]">선택하세요</span>
+        {/* Hero Section - Compact */}
+        <section className="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200 py-8 px-8">
+          <div className="max-w-7xl mx-auto text-center">
+            <h1 className="text-3xl md:text-4xl font-bold mb-2 text-gray-900">
+              선호하는 여성 타입을 <span className="text-[#C9A961]">선택하세요</span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              선택하신 타입에 맞는 여성 회원들을 매칭해드립니다
-              <br />
-              <span className="text-sm text-gray-400">복수 선택 가능</span>
+            <p className="text-sm text-gray-600">
+              복수 선택 가능 · 선택한 타입에 맞는 회원을 매칭해드립니다
             </p>
           </div>
         </section>
 
         {/* Type Selection */}
-        <section className="py-20 px-8">
+        <section className="py-6 px-4">
           <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {womanTypes.map((type) => (
                 <div
                   key={type.id}
                   onClick={() => toggleType(type.id)}
-                  className={`cursor-pointer transition-all duration-300 ${
+                  className={`cursor-pointer transition-all duration-300 rounded-xl overflow-hidden ${
                     selectedTypes.includes(type.id)
-                      ? 'bg-[#1a1a1a] text-white border-[#D4AF37] border-4 scale-105'
-                      : 'bg-white text-[#1a1a1a] border-gray-200 border hover:border-[#D4AF37]'
-                  } p-8 relative overflow-hidden group`}
+                      ? 'ring-4 ring-[#C9A961] shadow-2xl scale-105'
+                      : 'shadow-lg hover:shadow-2xl hover:scale-[1.02] bg-white'
+                  } relative group`}
                 >
-                  {/* Checkmark */}
-                  {selectedTypes.includes(type.id) && (
-                    <div className="absolute top-4 right-4 w-8 h-8 bg-[#D4AF37] rounded-full flex items-center justify-center">
-                      <span className="text-black font-bold">✓</span>
+                  {/* 실제 이미지 영역 - 세로 사진 */}
+                  <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
+                    {/* 실제 이미지 */}
+                    <Image
+                      src={type.imagePath}
+                      alt={type.title}
+                      fill
+                      className="object-cover"
+                      priority
+                      unoptimized
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                    />
+
+                    {/* 선택 시 오버레이 */}
+                    {selectedTypes.includes(type.id) && (
+                      <div className="absolute inset-0 bg-[#C9A961]/20"></div>
+                    )}
+
+                    {/* Checkmark */}
+                    {selectedTypes.includes(type.id) && (
+                      <div className="absolute top-4 right-4 w-12 h-12 bg-[#C9A961] rounded-full flex items-center justify-center shadow-lg animate-bounce">
+                        <span className="text-black font-bold text-2xl">✓</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* 카드 내용 */}
+                  <div className={`p-4 ${selectedTypes.includes(type.id) ? 'bg-[#2C3E50] text-white' : 'bg-white'}`}>
+                    {/* Title */}
+                    <h3 className="text-lg font-bold mb-2 text-center">{type.title}</h3>
+
+                    {/* Description */}
+                    <p className={`text-xs text-center mb-3 leading-relaxed ${selectedTypes.includes(type.id) ? 'text-gray-300' : 'text-gray-600'}`}>
+                      {type.description}
+                    </p>
+
+                    {/* Traits */}
+                    <div className="flex flex-wrap gap-1.5 justify-center">
+                      {type.traits.map((trait, idx) => (
+                        <span
+                          key={idx}
+                          className={`text-xs px-2 py-1 rounded-full font-medium ${
+                            selectedTypes.includes(type.id)
+                              ? 'bg-[#C9A961] text-black'
+                              : 'bg-gray-100 text-gray-700'
+                          }`}
+                        >
+                          {trait}
+                        </span>
+                      ))}
                     </div>
-                  )}
-
-                  {/* Icon */}
-                  <div className="text-6xl mb-6 text-center">{type.image}</div>
-
-                  {/* Title */}
-                  <h3 className="text-2xl font-bold mb-4 text-center">{type.title}</h3>
-
-                  {/* Description */}
-                  <p className={`text-center mb-6 leading-relaxed ${selectedTypes.includes(type.id) ? 'text-gray-300' : 'text-gray-600'}`}>
-                    {type.description}
-                  </p>
-
-                  {/* Traits */}
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {type.traits.map((trait, idx) => (
-                      <span
-                        key={idx}
-                        className={`text-xs px-3 py-1 ${
-                          selectedTypes.includes(type.id)
-                            ? 'bg-[#D4AF37] text-black'
-                            : 'bg-gray-100 text-gray-700'
-                        }`}
-                      >
-                        {trait}
-                      </span>
-                    ))}
                   </div>
                 </div>
               ))}
             </div>
 
             {/* Selected Count */}
-            <div className="mt-16 text-center">
-              <p className="text-xl text-gray-600 mb-8">
+            <div className="mt-10 mb-6 text-center">
+              <p className="text-lg text-gray-600 mb-6">
                 {selectedTypes.length > 0 ? (
                   <>
-                    <span className="text-[#D4AF37] font-bold">{selectedTypes.length}개</span> 타입 선택됨
+                    <span className="text-[#C9A961] font-bold text-2xl">{selectedTypes.length}개</span> 타입 선택됨
                   </>
                 ) : (
-                  '원하는 타입을 선택해주세요'
+                  '원하는 타입을 클릭해서 선택해주세요 (복수 선택 가능)'
                 )}
               </p>
 
               <button
                 onClick={handleMatching}
                 disabled={selectedTypes.length === 0}
-                className={`px-16 py-5 text-sm tracking-[0.2em] font-medium uppercase transition-all duration-500 ${
+                className={`px-16 py-5 text-base font-bold rounded-xl transition-all duration-300 ${
                   selectedTypes.length > 0
-                    ? 'bg-[#D4AF37] text-black hover:bg-[#B8942F] cursor-pointer'
+                    ? 'bg-[#C9A961] text-black hover:bg-[#8B6F47] hover:shadow-2xl cursor-pointer transform hover:scale-105'
                     : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                 }`}
               >
-                매칭 시작하기 ({selectedTypes.length})
+                매칭 결과 보기 ({selectedTypes.length})
               </button>
             </div>
           </div>
         </section>
       </main>
+      <Footer />
     </>
   );
 }

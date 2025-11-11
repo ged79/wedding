@@ -5,32 +5,35 @@ import { useState } from 'react';
 const stories = [
   {
     id: 1,
-    couple: '김민수 ♥ Linh Nguyen',
+    couple: '김○○ ♥ Nguyen Thi ○○',
     country: '🇻🇳 베트남',
-    period: '3개월',
+    period: '결혼 16년차',
+    year: '2008년',
     image: '💑',
-    story: '전에는 1,800만원 내고 업체 통해 진행했는데 여긴 월 9,900원으로 직접 대화하며 알아갈 수 있어요. 채팅으로 3개월 대화하고 서로 마음 맞는 걸 확인한 후 직접 베트남 가서 만났어요. 다음 달 결혼합니다!',
-    age: 37,
+    story: '20년 전통의 거성 국제 결혼을 통해 만났습니다. 대표님이 직접 상담해주시고 현지 사무소의 세심한 배려 덕분에 좋은 분을 만났습니다. 지금은 두 아이의 아빠로 행복하게 살고 있습니다.',
+    age: 35,
     rating: 5,
   },
   {
     id: 2,
-    couple: '이준호 ♥ Altantsetseg',
+    couple: '이○○ ♥ Batmunkh ○○',
     country: '🇲🇳 몽골',
-    period: '4개월',
+    period: '결혼 9년차',
+    year: '2015년',
     image: '👫',
-    story: '중개업체는 너무 비싸서 망설이고 있었는데, 이 플랫폼 덕분에 부담 없이 시작할 수 있었습니다. AI 번역이 정말 편리하고, 매일 대화하면서 서로를 잘 알게 됐어요. 현재 결혼 준비 중입니다!',
+    story: '늦은 나이에 결혼을 결심했는데, 거성의 체계적인 진행 덕분에 불안함 없이 진행할 수 있었습니다. 현지 사무소와 지금도 가족처럼 연락하며 지냅니다. 20년 노하우가 느껴지는 업체입니다.',
     age: 42,
     rating: 5,
   },
   {
     id: 3,
-    couple: '박성우 ♥ Mai Tran',
+    couple: '박○○ ♥ Pham Thi ○○',
     country: '🇻🇳 베트남',
-    period: '2개월',
+    period: '결혼 3년차',
+    year: '2021년',
     image: '💏',
-    story: '처음엔 반신반의했지만, 직접 대화해보니 정말 진심으로 만남을 원하는 분들이 많더라고요. 업체 개입 없이 자유롭게 진행할 수 있어서 훨씬 편했습니다. 강력 추천합니다!',
-    age: 39,
+    story: '사전 매칭으로 충분히 알아가는 시간을 가질 수 있었습니다. 졸속 결혼이 아닌 신중한 만남이 가능했고, 현지 방문 시에도 모든 것이 체계적으로 준비되어 있었습니다. 감사합니다!',
+    age: 38,
     rating: 5,
   },
 ];
@@ -58,14 +61,17 @@ export default function SuccessStories() {
             <h3 className="text-2xl font-bold text-gray-900 mb-2">
               {currentStory.couple}
             </h3>
-            <div className="flex items-center justify-center gap-4 text-sm text-gray-600">
+            <div className="flex items-center justify-center gap-4 text-sm text-gray-600 flex-wrap">
+              <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full font-semibold">
+                {currentStory.year}
+              </span>
               <span className="bg-rose-100 text-rose-700 px-3 py-1 rounded-full font-semibold">
                 {currentStory.country}
               </span>
-              <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full font-semibold">
-                만남 기간: {currentStory.period}
-              </span>
               <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full font-semibold">
+                {currentStory.period}
+              </span>
+              <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full font-semibold">
                 {currentStory.age}세
               </span>
             </div>
@@ -126,16 +132,16 @@ export default function SuccessStories() {
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4 mt-8">
         <div className="bg-gradient-to-br from-rose-50 to-pink-50 p-6 rounded-xl text-center">
-          <div className="text-3xl font-bold text-rose-600 mb-1">128+</div>
-          <div className="text-sm text-gray-600">성혼 커플</div>
+          <div className="text-3xl font-bold text-rose-600 mb-1">400+</div>
+          <div className="text-sm text-gray-600">20년간 성혼</div>
         </div>
         <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl text-center">
-          <div className="text-3xl font-bold text-blue-600 mb-1">95%</div>
-          <div className="text-sm text-gray-600">만족도</div>
+          <div className="text-3xl font-bold text-blue-600 mb-1">98%</div>
+          <div className="text-sm text-gray-600">고객 만족도</div>
         </div>
         <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl text-center">
-          <div className="text-3xl font-bold text-green-600 mb-1">3.2개월</div>
-          <div className="text-sm text-gray-600">평균 매칭 기간</div>
+          <div className="text-3xl font-bold text-green-600 mb-1">95%</div>
+          <div className="text-sm text-gray-600">결혼 유지율</div>
         </div>
       </div>
     </div>
