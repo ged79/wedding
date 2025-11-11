@@ -171,10 +171,6 @@ export default function Home() {
             <div className="bg-gradient-to-r from-[#C9A961] to-[#8B6F47] text-white p-8 rounded-lg shadow-xl">
               <div className="text-center max-w-3xl mx-auto">
                 <h3 className="text-xl md:text-2xl font-bold mb-4">100% 검증 보장</h3>
-                <p className="text-base md:text-lg mb-6">
-                  모든 서류는 철저하게 번역·공증하여 제공합니다.<br />
-                  검증되지 않은 회원은 절대 소개하지 않습니다.
-                </p>
                 <div className="flex flex-wrap justify-center gap-4 text-sm">
                   <div className="flex items-center gap-2">
                     <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">

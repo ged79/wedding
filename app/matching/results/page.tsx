@@ -197,7 +197,7 @@ function ResultsContent() {
 
                 {/* CTA Section */}
                 <div className="mt-10 bg-[#2C3E50] text-white p-8 text-center rounded-xl">
-                  <h3 className="text-2xl font-bold mb-3">
+                  <h3 className="text-xl font-bold mb-3">
                     마음에 드는 회원이 있으신가요?
                   </h3>
                   <p className="text-base text-gray-300 mb-6">
